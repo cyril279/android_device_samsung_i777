@@ -24,13 +24,17 @@ $(call inherit-product, vendor/slim/config/common_full_phone.mk)
 # Enhanced NFC
 $(call inherit-product, vendor/slim/config/nfc_enhanced.mk)
 
-# Inherit device configuration
-$(call inherit-product, device/samsung/i777/full_i777.mk)
+# Inherit device-agnostic products. Most specific first.
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+
+# Inherit device-specifics
+$(call inherit-product, device/samsung/i777/device.mk)
 
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := i777
 PRODUCT_NAME := slim_i777
 PRODUCT_BRAND := Samsung
+PRODUCT_MANUFACTURER := Samsung
 PRODUCT_MODEL := SGH-I777
 
 
